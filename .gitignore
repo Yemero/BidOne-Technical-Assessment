@@ -1,0 +1,12 @@
+# .NET
+FormApp.API/bin/
+FormApp.API/obj/
+FormApp.API/submissions.json
+
+# Angular
+form-app-client/node_modules/
+form-app-client/.angular/
+
+# General
+.DS_Store
+*.user
