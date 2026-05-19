@@ -1,0 +1,32 @@
+<div style="max-width: 400px; margin: 60px auto; font-family: Arial, sans-serif;">
+  <h2>Submit Your Details</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div style="margin-bottom: 12px;">
+      <label>First Name</label><br />
+      <input formControlName="firstName" placeholder="Enter first name"
+             style="width: 100%; padding: 8px; margin-top: 4px;" />
+      <small *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched"
+             style="color: red;">First name is required.</small>
+    </div>
+
+    <div style="margin-bottom: 12px;">
+      <label>Last Name</label><br />
+      <input formControlName="lastName" placeholder="Enter last name"
+             style="width: 100%; padding: 8px; margin-top: 4px;" />
+      <small *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched"
+             style="color: red;">Last name is required.</small>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid"
+            style="padding: 10px 20px; cursor: pointer;">
+      Submit
+    </button>
+
+  </form>
+
+  <p *ngIf="message" [style.color]="isError ? 'red' : 'green'">
+    {{ message }}
+  </p>
+</div>
