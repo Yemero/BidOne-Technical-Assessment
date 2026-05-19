@@ -1,98 +1,67 @@
-# Form Submission App
-A simple web application built as a technical assessment. A form on the Angular frontend collects a first name and last name, posts the data to an ASP.NET Core Web API, and the backend saves each submission as an object to a local JSON file.
+# Form Submission App (MVC version)
+A simple web application built as a technical assessment. A form collects a first name and last name, submits the data to a backend, and each submission is saved as an object to a local JSON file.
+ 
+This repository contains **two implementations** available as separate branches:
+ 
+| Branch | Approach |
+|--------|---------|
+| `main` | [Angular frontend + ASP.NET Core Web API](https://github.com/Yemero/BidOne-Technical-Assessment) |
+| `mvc-version` | [Single ASP.NET Core MVC application]() |
 
----
-
-## Tech Stack
-
+### Tech Stack
+ 
 | Layer | Technology |
 |-------|-----------|
-| Frontend | Angular 19 |
-| Backend | ASP.NET Core Web API (.NET 8) |
+| Frontend | Razor Views (.cshtml) |
+| Backend | ASP.NET Core MVC (.NET 8) |
 | Data Storage | Local JSON file |
-
----
-
-## Project Structure
-
+ 
+### Project Structure
+ 
 ```
 FormApp/
-├── FormApp.API/              # ASP.NET Core Web API
-│   ├── Controllers/
-│   │   └── FormController.cs
-│   ├── Models/
-│   │   └── FormSubmission.cs
-│   ├── Services/
-│   │   └── JsonFileService.cs
-│   └── Program.cs
-│
-└── form-app-client/          # Angular frontend
-    └── src/
-        └── app/
-            ├── app.ts
-            ├── app.html
-            ├── app.config.ts
-            └── form.service.ts
+└── FormApp.MVC/
+    ├── Controllers/
+    │   └── HomeController.cs
+    ├── Models/
+    │   └── FormSubmission.cs
+    ├── Services/
+    │   └── JsonFileService.cs
+    ├── Views/
+    │   └── Home/
+    │       ├── Index.cshtml
+    │       └── Success.cshtml
+    └── Program.cs
 ```
-
----
-
-## Prerequisites
-
-Make sure the following are installed before running the project:
-
+ 
+### Prerequisites
+ 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download)
-- [Node.js LTS](https://nodejs.org)
-- Angular CLI — install with `npm install -g @angular/cli`
-
----
-
-## How to Run
-
-Both the API and the Angular app need to run at the same time in **separate terminals**.
-
-### Terminal 1 — Start the API
-
+### How to Run
+ 
+Only one terminal needed:
+ 
 ```bash
-cd FormApp.API
+cd FormApp.MVC
 dotnet run
 ```
-
-The API will start on `http://localhost:5000`. You should see output like:
-
-```
-Now listening on: http://localhost:5000
-```
-
-### Terminal 2 — Start the Angular App
-
-```bash
-cd form-app-client
-ng serve
-```
-
-Then open your browser and go to:
-
-```
-http://localhost:4200
-```
-
+ 
+Open your browser and go to `http://localhost:5000`.
+ 
+### How It Works
+ 
+1. The user visits `http://localhost:5000` — the server renders the form via Razor
+2. The user fills in **First Name** and **Last Name** and submits
+3. The browser POSTs the form data to the `HomeController`
+4. The controller validates the model via data annotations
+5. The submission is saved to `FormApp.MVC/submissions.json`
+6. The user is redirected to a success page
 ---
-
-## How It Works
-
-1. The user fills in their **First Name** and **Last Name** in the form
-2. On submit, Angular POSTs the data to `http://localhost:5000/api/form`
-3. The API receives the data as a `FormSubmission` object
-4. The object is appended to `FormApp.API/submissions.json`
-5. A success message is returned and displayed on the page
-
----
-
+ 
 ## Example JSON Output
-
+ 
 After a successful submission, `submissions.json` will look like this:
-
+ 
 ```json
 [
   {
@@ -107,37 +76,18 @@ After a successful submission, `submissions.json` will look like this:
   }
 ]
 ```
-
+ 
 Each submission is appended to the array. The file is created automatically on the first submission.
-
+ 
 ---
-
-## API Reference
-
-### POST `/api/form`
-
-Accepts a form submission and saves it to the JSON file.
-
-**Request body:**
-```json
-{
-  "firstName": "Jane",
-  "lastName": "Doe"
-}
-```
-
-**Success response — 200 OK:**
-```json
-{
-  "message": "Submission saved successfully."
-}
-```
-
-**Validation failure — 400 Bad Request:**
-```json
-{
-  "errors": {
-    "FirstName": ["The FirstName field is required."]
-  }
-}
-```
+ 
+## Key Differences Between Implementations
+ 
+| | Angular + Web API (`main`) | ASP.NET Core MVC (`mvc-version`) |
+|-|---------------------------|----------------------------------|
+| **Architecture** | Decoupled frontend and backend | Single application |
+| **View layer** | Angular (TypeScript + HTML) | Razor (.cshtml) |
+| **Data format** | JSON via REST API | HTML form POST |
+| **CORS** | Required | Not needed |
+| **Terminals to run** | 2 | 1 |
+| **Best for** | Modern SPAs, mobile clients | Traditional server-rendered apps |

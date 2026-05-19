@@ -1,9 +1,12 @@
-# .NET
+# .NET - API
 FormApp.API/bin/
 FormApp.API/obj/
+FormApp.API/submissions.json
 
-# 
-FormApp.API/submissions.json 
+# .NET - MVC
+FormApp.MVC/bin/
+FormApp.MVC/obj/
+FormApp.MVC/submissions.json
 
 # Angular
 form-app-client/node_modules/
@@ -11,9 +14,9 @@ form-app-client/.angular/
 
 # General
 .DS_Store
+Thumbs.db
 *.user
 
-# Compiled output
 /dist
 /tmp
 /out-tsc
@@ -52,6 +55,5 @@ testem.log
 /typings
 __screenshots__/
 
-# System files
-.DS_Store
-Thumbs.db
+# MVC wwwroot static assets
+FormApp.MVC/wwwroot/
