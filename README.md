@@ -79,15 +79,4 @@ After a successful submission, `submissions.json` will look like this:
  
 Each submission is appended to the array. The file is created automatically on the first submission.
  
----
- 
-## Key Differences Between Implementations
- 
-| | Angular + Web API (`main`) | ASP.NET Core MVC (`mvc-version`) |
-|-|---------------------------|----------------------------------|
-| **Architecture** | Decoupled frontend and backend | Single application |
-| **View layer** | Angular (TypeScript + HTML) | Razor (.cshtml) |
-| **Data format** | JSON via REST API | HTML form POST |
-| **CORS** | Required | Not needed |
-| **Terminals to run** | 2 | 1 |
-| **Best for** | Modern SPAs, mobile clients | Traditional server-rendered apps |
+
