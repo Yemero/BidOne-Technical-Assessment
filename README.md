@@ -1,6 +1,12 @@
 # Form Submission App
 A simple web application built as a technical assessment. A form on the Angular frontend collects a first name and last name, posts the data to an ASP.NET Core Web API, and the backend saves each submission as an object to a local JSON file.
 
+| Branch | Approach |
+|--------|---------|
+| `main` | [Angular frontend + ASP.NET Core Web API](https://github.com/Yemero/BidOne-Technical-Assessment) |
+| `mvc-version` | [Single ASP.NET Core MVC application](https://github.com/Yemero/BidOne-Technical-Assessment/tree/MVC-ver) |
+
+
 ---
 
 ## Tech Stack
