@@ -15,31 +15,7 @@ A simple web application built as a technical assessment. A form on the Angular 
 |-------|-----------|
 | Frontend | Angular 19 |
 | Backend | ASP.NET Core Web API (.NET 8) |
-| Data Storage | Local JSON file |
-
----
-
-## Project Structure
-
-```
-FormApp/
-├── FormApp.API/              # ASP.NET Core Web API
-│   ├── Controllers/
-│   │   └── FormController.cs
-│   ├── Models/
-│   │   └── FormSubmission.cs
-│   ├── Services/
-│   │   └── JsonFileService.cs
-│   └── Program.cs
-│
-└── form-app-client/          # Angular frontend
-    └── src/
-        └── app/
-            ├── app.ts
-            ├── app.html
-            ├── app.config.ts
-            └── form.service.ts
-```
+| Data Storage | Local JSON file at `FormApp.API/Submissions.JSON`|
 
 ---
 
@@ -57,30 +33,29 @@ Make sure the following are installed before running the project:
 
 Both the API and the Angular app need to run at the same time in **separate terminals**.
 
-### Terminal 1 — Start the API
+### Terminal 1 — Start API
 
 ```bash
 cd FormApp.API
 dotnet run
 ```
 
-The API will start on `http://localhost:5000`. You should see output like:
-
-```
-Now listening on: http://localhost:5000
-```
-
-### Terminal 2 — Start the Angular App
+### Terminal 2 — Start Frontend 
 
 ```bash
 cd form-app-client
 ng serve
 ```
 
-Then open your browser and go to:
+Frontend is opened at:
 
 ```
 http://localhost:4200
+```
+
+API is configured for:
+```
+http://localhost:5251
 ```
 
 ---
@@ -95,28 +70,6 @@ http://localhost:4200
 
 ---
 
-## Example JSON Output
-
-After a successful submission, `submissions.json` will look like this:
-
-```json
-[
-  {
-    "firstName": "Jane",
-    "lastName": "Doe",
-    "submittedAt": "2025-01-01T00:00:00Z"
-  },
-  {
-    "firstName": "John",
-    "lastName": "Smith",
-    "submittedAt": "2025-01-01T00:01:00Z"
-  }
-]
-```
-
-Each submission is appended to the array. The file is created automatically on the first submission.
-
----
 
 ## API Reference
 
@@ -147,3 +100,29 @@ Accepts a form submission and saves it to the JSON file.
   }
 }
 ```
+
+---
+
+## Project Structure
+
+```
+FormApp/
+├── FormApp.API/              # ASP.NET Core Web API
+│   ├── Controllers/
+│   │   └── FormController.cs
+│   ├── Models/
+│   │   └── FormSubmission.cs
+│   ├── Services/
+│   │   └── JsonFileService.cs
+│   └── Program.cs
+│
+└── form-app-client/          # Angular frontend
+    └── src/
+        └── app/
+            ├── app.ts
+            ├── app.html
+            ├── app.config.ts
+            └── form.service.ts
+```
+
+---
