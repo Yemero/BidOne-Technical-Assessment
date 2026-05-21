@@ -1,11 +1,7 @@
 # Form Submission App
-A simple web application built as a technical assessment. A form on the Angular frontend collects a first name and last name, posts the data to an ASP.NET Core Web API, and the backend saves each submission as an object to a local JSON file.
-
-| Branch | Approach |
-|--------|---------|
-| `main` | [Angular frontend + ASP.NET Core Web API](https://github.com/Yemero/BidOne-Technical-Assessment) |
-| `mvc-version` | [Single ASP.NET Core MVC application](https://github.com/Yemero/BidOne-Technical-Assessment/tree/MVC-ver) |
-
+- Simple Angular frontend form that collects First Name and Last Name.
+- Form data is posted to an ASP.NET Core Web API backend.
+- Each submission is received as an object and saved to a local JSON file.
 
 ---
 
@@ -15,7 +11,7 @@ A simple web application built as a technical assessment. A form on the Angular 
 |-------|-----------|
 | Frontend | Angular 19 |
 | Backend | ASP.NET Core Web API (.NET 8) |
-| Data Storage | Local JSON file at `FormApp.API/Submissions.JSON`|
+| Data Storage | Local JSON file at `FormApp.API/submissions.json` |
 
 ---
 
@@ -31,7 +27,7 @@ Make sure the following are installed before running the project:
 
 ## How to Run
 
-Both the API and the Angular app need to run at the same time in **separate terminals**.
+Both the API and the Angular app are required to run at the same time in **separate terminals**.
 
 ### Terminal 1 — Start API
 
@@ -40,30 +36,21 @@ cd FormApp.API
 dotnet run
 ```
 
-### Terminal 2 — Start Frontend 
-
+### Terminal 2 — Start Frontend
 ```bash
 cd form-app-client
 ng serve
 ```
+Open your browser at `http://localhost:4200`
 
-Frontend is opened at:
-
-```
-http://localhost:4200
-```
-
-API is configured for:
-```
-http://localhost:5251
-```
+API runs at `http://localhost:5251`
 
 ---
 
 ## How It Works
 
 1. The user fills in their **First Name** and **Last Name** in the form
-2. On submit, Angular POSTs the data to `http://localhost:5000/api/form`
+2. On submit, Angular POSTs the data to `http://localhost:5251/api/form`
 3. The API receives the data as a `FormSubmission` object
 4. The object is appended to `FormApp.API/submissions.json`
 5. A success message is returned and displayed on the page

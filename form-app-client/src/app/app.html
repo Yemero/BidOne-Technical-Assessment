@@ -1,32 +1,54 @@
-<div style="max-width: 400px; margin: 60px auto; font-family: Arial, sans-serif;">
-  <h2>Submit Your Details</h2>
+<div class="container">
+  <div class="card">
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-    <div style="margin-bottom: 12px;">
-      <label>First Name</label><br />
-      <input formControlName="firstName" placeholder="Enter first name"
-             style="width: 100%; padding: 8px; margin-top: 4px;" />
-      <small *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched"
-             style="color: red;">First name is required.</small>
+    <div class="card-header">
+      <h2>Submit Your Details</h2>
+      <p>Please fill in the fields below and click submit.</p>
     </div>
 
-    <div style="margin-bottom: 12px;">
-      <label>Last Name</label><br />
-      <input formControlName="lastName" placeholder="Enter last name"
-             style="width: 100%; padding: 8px; margin-top: 4px;" />
-      <small *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched"
-             style="color: red;">Last name is required.</small>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          formControlName="firstName"
+          placeholder="Enter your first name"
+          [class.invalid]="form.get('firstName')?.invalid && form.get('firstName')?.touched"
+        />
+        <span class="error"
+          *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
+          First name is required.
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          formControlName="lastName"
+          placeholder="Enter your last name"
+          [class.invalid]="form.get('lastName')?.invalid && form.get('lastName')?.touched"
+        />
+        <span class="error"
+          *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched">
+          Last name is required.
+        </span>
+      </div>
+
+      <button type="submit" [disabled]="form.invalid" [class.loading]="isLoading">
+        {{ isLoading ? 'Submitting...' : 'Submit' }}
+      </button>
+
+    </form>
+
+    <div class="message success" *ngIf="message && !isError">
+      ✓ {{ message }}
     </div>
 
-    <button type="submit" [disabled]="form.invalid"
-            style="padding: 10px 20px; cursor: pointer;">
-      Submit
-    </button>
+    <div class="message error-msg" *ngIf="message && isError">
+      ✗ {{ message }}
+    </div>
 
-  </form>
-
-  <p *ngIf="message" [style.color]="isError ? 'red' : 'green'">
-    {{ message }}
-  </p>
+  </div>
 </div>
