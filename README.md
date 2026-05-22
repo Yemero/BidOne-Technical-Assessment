@@ -33,13 +33,15 @@ Both the API and the Angular app are required to run at the same time in **separ
 
 ```bash
 cd FormApp.API
+dotnet restore
 dotnet run
 ```
 
 ### Terminal 2 — Start Frontend
 ```bash
 cd form-app-client
-ng serve
+npm install
+ng serve -o
 ```
 Open your browser at `http://localhost:4200`
 
